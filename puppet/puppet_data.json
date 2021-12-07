@@ -1,0 +1,222 @@
+[{
+     "example.edu": {
+         "name": "example.edu",
+         "facts": {
+             "id": "example",
+             "os": {
+                 "name": "windows",
+                 "family": "windows",
+                 "release": {
+                     "full": "2012",
+                     "major": "2012"
+                 },
+                 "windows": {
+                     "system32": "C:\\\\Windows\\\\system32"
+                 },
+                 "hardware": "x86_64",
+                 "architecture": "x64"
+             },
+             "dmi": {
+                 "product": {
+                     "name": "VMware Virtual Platform",
+                     "serial_number": "VMware-42 31"
+                 },
+                 "manufacturer": "Phoenix Technologies LTD"
+             },
+             "fqdn": "example",
+             "path": "C:\\\\Program Files\\\\Puppet\\\\facter/bin;",
+             "ruby": {
+                 "sitedir": "C:/Program Files/Puppet/sys/ruby/lib/ruby/site_ruby/2.4.0",
+                 "version": "2.4.4",
+                 "platform": "x64-mingw32"
+             },
+             "tags": [
+                 {
+                     "name": "notify",
+                     "value": "infra_services"
+                 }
+             ],
+             "is_pe": false,
+             "domain": "example",
+             "kernel": "windows",
+             "memory": {
+                 "system": {
+                     "used": "4.61 GiB",
+                     "total": "8.00 GiB",
+                     "capacity": "57.59%",
+                     "available": "3.39 GiB",
+                     "used_bytes": 4947013632,
+                     "total_bytes": 8589328384,
+                     "available_bytes": 3642314752
+                 }
+             },
+             "uptime": "4 days",
+             "netmask": "255.255.255.0",
+             "network": "10.18.162.0",
+             "trusted": {
+                 "domain": "example",
+                 "certname": "example",
+                 "external": {},
+                 "hostname": "example",
+                 "extensions": {},
+                 "authenticated": "remote"
+             },
+             "virtual": "vmware",
+             "hostname": "example",
+             "identity": {
+                 "user": "example",
+                 "privileged": true
+             },
+             "mfa_role": "none",
+             "osfamily": "windows",
+             "pe_patch": {
+                 "pinned_packages": [],
+                 "blackouts": {},
+                 "block_patching_on_warnings": "false",
+                 "missing_update_kbs": [],
+                 "security_package_updates": [],
+                 "patch_group": "",
+                 "package_update_count": 0,
+                 "package_updates": [],
+                 "warnings": {
+                     "update_file": "Update file not found, update information invalid",
+                     "security_update_file": "Security update file not found, update information invalid"
+                 },
+                 "last_run": {},
+                 "blocked_reasons": [],
+                 "blocked": false,
+                 "reboots": {
+                     "reboot_required": "unknown"
+                 },
+                 "reboot_override": "default",
+                 "security_package_update_count": 0
+             },
+             "services": [
+                 "example"
+             ],
+             "system32": "C:\\\\Windows\\\\system32",
+             "timezone": "Eastern Daylight Time",
+             "dart_role": "none",
+             "ipaddress": "10.18.162.102",
+             "clientcert": "example",
+             "clientnoop": false,
+             "datacenter": "onpremise",
+             "interfaces": "Ethernet0",
+             "is_virtual": true,
+             "macaddress": "00:50:56:01:01:01",
+             "memoryfree": "3.39 GiB",
+             "memorysize": "8.00 GiB",
+             "networking": {
+                 "interfaces": {
+                     "Ethernet0": {
+                         "ip": "10.18.162.102",
+                         "mac": "00:50:56:01:01:01",
+                         "mtu": 1500,
+                         "netmask": "255.255.255.0",
+                         "network": "10.18.162.0",
+                         "bindings": [
+                             {
+                                 "address": "10.18.162.102",
+                                 "netmask": "255.255.255.0",
+                                 "network": "10.18.162.0"
+                             }
+                         ]
+                     }
+                 },
+                 "ip": "10.18.162.102",
+                 "primary": "Ethernet0",
+                 "mtu": 1500,
+                 "hostname": "example",
+                 "fqdn": "example",
+                 "netmask": "255.255.255.0",
+                 "network": "10.18.162.0",
+                 "domain": "example",
+                 "mac": "00:50:56:01:01:01"
+             },
+             "processor0": "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+             "processor1": "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+             "processor2": "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+             "processor3": "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+             "processors": {
+                 "isa": "x64",
+                 "count": 4,
+                 "models": [
+                     "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+                     "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+                     "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+                     "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz"
+                 ],
+                 "physicalcount": 4
+             },
+             "hardwareisa": "x64",
+             "hypervisors": {
+                 "vmware": {}
+             },
+             "is_critical": false,
+             "productname": "VMware Virtual Platform",
+             "rubysitedir": "C:/Program Files/Puppet/sys/ruby/lib/ruby/site_ruby/2.4.0",
+             "rubyversion": "2.4.4",
+             "uptime_days": 4,
+             "architecture": "x64",
+             "maint_window": [
+                 "example"
+             ],
+             "manufacturer": "Phoenix Technologies LTD",
+             "rubyplatform": "x64-mingw32",
+             "serialnumber": "VMware-42 31 0e 29 05",
+             "uptime_hours": 99,
+             "clientversion": "5.4",
+             "facterversion": "3.1",
+             "hardwaremodel": "x86_64",
+             "is_production": true,
+             "kernelrelease": "6.3.9600",
+             "kernelversion": "6.3.9600",
+             "memoryfree_mb": 3473.58203125,
+             "memorysize_mb": 8191.421875,
+             "mtu_Ethernet0": 1500,
+             "puppet_server": "example",
+             "puppet_vardir": "C:/ProgramData/puppet/cache",
+             "puppetversion": "5.4",
+             "system_uptime": {
+                 "days": 4,
+                 "hours": 99,
+                 "uptime": "4 days",
+                 "seconds": 358879
+             },
+             "common_appdata": "C:\\\\ProgramData",
+             "firewall_group": "backend_web",
+             "processorcount": 4,
+             "uptime_seconds": 358879,
+             "aio_agent_build": "5.5.6",
+             "operatingsystem": "windows",
+             "kernelmajversion": "6.3",
+             "package_provider": "windows",
+             "service_provider": "windows",
+             "staging_http_get": "curl",
+             "aio_agent_version": "5.5.6",
+             "chocolateyversion": "0.10.7",
+             "netmask_Ethernet0": "255.255.255.0",
+             "network_Ethernet0": "10.18.162.0",
+             "pe_concat_basedir": "C:/ProgramData/puppet/cache/pe_concat",
+             "choco_install_path": "C:\\\\ProgramData\\\\chocolatey",
+             "powershell_version": "5.1.1",
+             "ipaddress_Ethernet0": "10.18.162.102",
+             "macaddress_Ethernet0": "00:50:56:01:01:01",
+             "notification_profile": "2_failures",
+             "env_windows_installdir": "C:\\\\Program Files\\\\Puppet",
+             "operatingsystemrelease": "2012 R2",
+             "physicalprocessorcount": 4,
+             "puppet_environmentpath": "C:/ProgramData/code/environments",
+             "puppet_files_dir_present": false,
+             "operatingsystemmajrelease": "2012 R2",
+             "platform_symlink_writable": false,
+             "puppet_inventory_metadata": {
+                 "packages": {
+                     "collection_enabled": false,
+                     "last_collection_time": "0.0s"
+                 }
+             },
+             "agent_specified_environment": "staging"
+         }
+     }
+ }]
