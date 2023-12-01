@@ -5,8 +5,9 @@ import csv
 import requests
 
 from requests.auth import HTTPBasicAuth
-from typing import Dict, List
+from typing import Dict, List, Optional
 
+API_URI = "https://api.wootuno.wootcloud.com/v2/integrations/custom_devicecontext"
 SOURCE = "rapid7"
 
 # User can update values
@@ -28,15 +29,30 @@ def convert_csv_str_to_dict(report: str) -> List[Dict]:
     return [dict(row) for row in csv.DictReader(report.split("\n"))]
 
 
+def push_data(client_id: str, secret_key: str, transaction_id: str, devices:List[Dict]):
+    api_payload = {"transaction_id": transaction_id, "data": devices}
+    response = requests.post(API_URI,
+                             auth=HTTPBasicAuth(client_id, secret_key),
+                             json=api_payload)
+    if response.status_code == 202:
+        print(f"Accepted")
+    elif response.status_code in [401, 429]:
+        print(f"Failed with reason: {response.reason}")
+    elif response.status_code == 400:
+        response = response.json()
+        print(f"Failed with reason: {response['message']}. Payload: {api_payload}")
+
+
 # Parses report and push to devicecontext API
-def map_and_call_device_context_api(report: str, client_id: str, secret_key: str):
+def map_and_call_device_context_api(report: str, client_id: str, secret_key: str, transaction_id: str):
     report = convert_csv_str_to_dict(report)
+    count = 0
+    devices = []
     for row in report:
-        api_payload = {
+        devices.append({
             # Added mac address here just to show payload, mac address is MANDATORY field
             "mac_address": "",
             "ip": row['Asset IP Address'],
-            "source": SOURCE,
             "use_scan": True,
             "scan": {
                 "report_id": REPORT_ID,
@@ -49,18 +65,38 @@ def map_and_call_device_context_api(report: str, client_id: str, secret_key: str
                     "vulnerability_name":row['Vulnerability Title']
                 }]
             }
-        }
+        })
+        count += 1
+        if count % 10 == 0:
+            push_data(client_id, secret_key, transaction_id, devices)
+            devices = []
+    # Check if any devices are left and push
+    if devices:
+        push_data(client_id, secret_key, transaction_id, devices)
 
-        response = requests.post('https://api.wootuno.wootcloud.com/v1/integrations/custom_devicecontext',
-                                 auth=HTTPBasicAuth(client_id, secret_key),
-                                 json=api_payload)
-        if response.status_code == 202:
-            print(f"Accepted")
-        elif response.status_code in [401, 429]:
-            print(f"Failed with reason: {response.reason}")
-        elif response.status_code == 400:
-            response = response.json()
-            print(f"Failed with reason: {response['message']}. Payload: {api_payload}")
+
+def start_transaction(client_id: str, secret_key: str) -> Optional[str]:
+    response = requests.post(API_URI,
+                             auth=HTTPBasicAuth(client_id, secret_key),
+                             json={"source": SOURCE})
+    if response.status_code == 200:
+        print("Transaction started")
+        response = response.json()
+        return response["transaction_id"]
+    elif response.status_code == 400:
+        response = response.json()
+        print("Transaction start failed: %s" % response["message"])
+
+
+def close_transaction(client_id: str, secret_key: str, transaction_id: str):
+    response = requests.post(API_URI,
+                             auth=HTTPBasicAuth(client_id, secret_key),
+                             json={"transaction_id": transaction_id, "data": []})
+    if response.status_code == 200:
+        print("Transaction closed")
+    elif response.status_code == 400:
+        response = response.json()
+        print("Transaction close failed: %s" % response["message"])
 
 
 def parse_args():
@@ -79,7 +115,9 @@ def parse_args():
 def main():
     args = parse_args()
     report = get_report(args.username, args.pwd, args.report_id, args.instance, args.host, args.port)
-    map_and_call_device_context_api(report, args.client_id, args.secret_key)
+    transaction_id = start_transaction(args.client_id, args.secret_key)
+    map_and_call_device_context_api(report, args.client_id, args.secret_key, transaction_id)
+    close_transaction(args.client_id, args.secret_key, transaction_id)
 
 
 if __name__ == "__main__":
